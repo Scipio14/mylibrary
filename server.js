@@ -8,6 +8,7 @@ const expressLayouts = require("express-ejs-layouts");
 const mongoose = require("mongoose");
 const indexRouter = require("./routes/index");
 const authorRouter = require("./routes/authors");
+const bookRouter = require("./routes/books");
 
 //Settings
 app.set("view engine", "ejs");
@@ -32,8 +33,10 @@ mongoose
   .then((db) => console.log("Database is connected to mongoose"))
   .catch((err) => console.log(err));
 
+//Importing all of our Routes
 app.use("/", indexRouter);
 app.use("/authors", authorRouter);
+app.use("/books", bookRouter);
 
 app.listen(process.env.PORT || 5000, () => {
   console.log("Server running on port 5000");

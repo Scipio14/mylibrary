@@ -1,0 +1,36 @@
+<div>
+  <label>Title</label>
+  <input type="text" name="title" value="<%= book.title %>" />
+</div>
+<div>
+  <label>Author</label>
+  <!-- Aquí vamos a tener un input de tipo select para poder escoger a los 
+  autores-que vamos a poblar con los datos de la colección de autores 
+  para ello primero hay que hacer una búsqueda de los autores a mongoose con javascript-->
+  <select name="author">
+
+  <% authors.forEach(author=>{ %>
+    <% if (author.id === book.author){ %>
+        <option selected label ="<%= author.name %>" value ="<%= author.id %>"/>
+    <% }else { %>
+        <option label ="<%= author.name %>" value ="<%= author.id %>"/>
+    <% } %>
+      
+    <% }) %>
+  </select>
+<!-- Aquí se terminal el select de los autores-->
+
+</div>
+<div>
+  <label>Publish Date</label>
+  <input type="date" name="publishDate"
+        value="<%= book.publishDate == null ? '': book.publishDate.toISOString().split('T')[0] %>" >
+</div>
+<div>
+  <label>Page Count</label>
+  <input type="number" name="pageCount" min="1" value="<%= book.pageCount %>" >
+</div>
+<div>
+  <label>Description</label>
+  <textarea name="description"><%= book.description %></textarea>
+</div>
